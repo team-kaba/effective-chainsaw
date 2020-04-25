@@ -1,6 +1,6 @@
 from slackweb import Slack
 
-web_hook_url = "webHookのURL"
+web_hook_url = "https://hooks.slack.com/services/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"
 
 
 def main():
