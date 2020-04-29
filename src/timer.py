@@ -1,17 +1,25 @@
+# -*- coding: utf-8 -*-
 import datetime
+from threading import Thread
+import logging
 
 
-class Timer():
+logger = logging.getLogger(__name__)
+fmt = "%(asctime)s %(levelname)s %(name)s : %(message)s"
+logging.basicConfig(level=logging.DEBUG, format=fmt)
+
+
+class Timer(Thread):
     """
-    Timerクラスの役割:決められた時刻にJobを実行する役割
-    現在時刻と設定された時刻を常に比較
-    ↓
-    決められた時刻にJobを実行
+    決められた時刻にJobを実行する役割
     """
 
     def __init__(self, time, job):
         """
-        set_time : datatime
+
+        Args:
+            time : datatime
+            job : Jobクラスを継承したクラス
         """
         self.__time = time
         self.__job = job
@@ -22,12 +30,8 @@ class Timer():
 
         """
         while True:
-            # TODO 現在時刻と保存記録を比較する
-            # TODO ＝の場合、保存記録に基づいたJobを実行する
             if datetime.datetime.now() >= self.__time:
-                self.__job.run()
-                print("ジョブを実行しました")
-                break
+                return self.__job.run()
 
     def set_time(self, time):
         """

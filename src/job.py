@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from slackweb import Slack
 from abc import ABCMeta, abstractmethod
 
@@ -12,6 +13,9 @@ class Job(metaclass=ABCMeta):
 
 
 class SlackMessenger(Job):
+    """
+    特定のチャンネルにメッセージを送る
+    """
 
     def __init__(self, web_hook_url, sent_message):
         """

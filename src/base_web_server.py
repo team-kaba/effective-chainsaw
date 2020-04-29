@@ -9,8 +9,8 @@ import time
 class TimeRequstHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         content_len = int(self.headers.get("content-length"))
-        request_body = self.rfile.read(content_len).decode("utf-8")
-        data = json.loads(request_body)
+        request_body = json.loads(self.rfile.read(content_len).decode("utf-8"))
+        
 
         self.send_response(200)
         self.send_header("Content-type", "application/json")
