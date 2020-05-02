@@ -32,14 +32,3 @@ class Timer(Thread):
         while True:
             if datetime.datetime.now() >= self.__time:
                 return self.__job.run()
-
-    def set_time(self, time):
-        """
-        Parameters
-        ----------
-        time : datetime
-            Jobの実行時刻
-        job : Job
-        """
-        # TODO 実行時刻を記録する
-        self.__set_time = time
