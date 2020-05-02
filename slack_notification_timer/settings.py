@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'slack.apps.SlackConfig'
+    'slack.apps.SlackConfig',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
