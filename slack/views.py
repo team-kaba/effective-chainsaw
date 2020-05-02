@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import generics
+from .models import SlackNotification
+from .serializer import SlackNotificationSerializer
 
-# Create your views here.
+
+class SlackNotificationListCreater(generics.ListCreateAPIView):
+    queryset = SlackNotification.objects.all()
+    serializer_class = SlackNotificationSerializer
