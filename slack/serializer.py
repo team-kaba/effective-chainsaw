@@ -5,4 +5,4 @@ from .models import SlackNotification
 class SlackNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SlackNotification
-        field = ('id', 'message', 'time', 'url')
+        fields = ('id', 'message', 'time', 'url')

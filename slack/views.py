@@ -3,6 +3,6 @@ from .models import SlackNotification
 from .serializer import SlackNotificationSerializer
 
 
-class SlackNotificationListCreater(generics.ListAPIView):
+class SlackNotificationListCreater(generics.ListCreateAPIView):
     queryset = SlackNotification.objects.all()
     serializer_class = SlackNotificationSerializer
