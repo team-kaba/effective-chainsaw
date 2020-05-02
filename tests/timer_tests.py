@@ -13,8 +13,6 @@ class TimerTests(unittest.TestCase):
     def test_run(self):
         """
         テスト観点:Jobが定時実行されているか
-            1.期待された時間で実行されているか
-            2.Jobが正常に実行されているか
         """
         now = datetime.now()
         expected_time = now + timedelta(seconds=5)
@@ -22,6 +20,7 @@ class TimerTests(unittest.TestCase):
         job_test = JobTest()
 
         # 1秒の誤差は許容する前提
+        # TODO モックを使用してテストを行うべき？
         self.assertTrue(expected_time >= Timer(execution_time, job_test).run())
 
 
