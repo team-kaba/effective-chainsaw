@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
 import './styles.css';
-import createTimerPost from './api/Index';
+import API_BASE_URL from './api/Const'
+import axios from 'axios';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      message: '',
-      time: '',
-      url: ''
+      message: "",
+      time: "",
+      url: ""
     }
   }
+
   messageChanged(e) {
     this.setState({ message: e.target.value })
   }
@@ -25,7 +28,17 @@ class App extends React.Component {
   }
 
   clickHandler(e) {
-    createTimerPost(e)
+    axios.post(API_BASE_URL, {
+      message: this.state.message,
+      time: this.state.time,
+      url: this.state.url
+      }
+    ).then(function (res) {
+      console.log(res)
+    }
+    ).catch(function (error) {
+      console.log(error);
+    });
   }
   
   render() {
@@ -33,18 +46,17 @@ class App extends React.Component {
       <form>
         <div >
           Message:<br />
-          <textarea className="message-area" value={this.state.message} name="message"
-            onChange={e => this.messageChanged(e)} />
+          <textarea className="message-area" name="message"
+            onChange={e => this.messageChanged(e)}/>
         </div>
         <div>
           Time:<br />
-          <input type="datetime-local" name="time" value={this.state.time}
-            onChange={e => this.timeChanged(e)} />
+          <input type="datetime-local" name="time"
+            onChange={e => this.timeChanged(e)}/>
         </div>
         <div>
           URL:<br />
-          <input type="text" name="url" value={this.state.time}
-            onChange={e => this.urlChanged(e)}/>
+          <input type="text" name="url" onChange={e => this.urlChanged(e)}/>
         </div>
         <button onClick={e => this.clickHandler(e)}>送信</button>
       </form>
