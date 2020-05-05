@@ -4,15 +4,37 @@ from datetime import datetime
 import time
 
 
+FILE_TO_SERVE = 'src/content.json'
+
+
 class TimeRequstHandler(BaseHTTPRequestHandler):
+
+    def do_OPTIONS(self):
+        self.send_response(200, "ok")
+        self.send_header('Access-Control-Allow-Credentials', 'true')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header("Access-Control-Allow-Headers",
+                         "X-Requested-With, Content-type")
+        requestBody = json.loads(self.rfile.read().decode('utf-8'))
+        print(requestBody)
+
     def do_POST(self):
-        content_len = int(self.headers.get("content-length"))
-        request_body = json.loads(self.rfile.read(content_len).decode("utf-8"))
-        print(request_body)
         self.send_response(200)
-        self.send_header("Content-type", "application/json")
+        self.send_header('Access-Control-Allow-Credentials', 'true')
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header("Content-type", "text/xml")
+        content_len = int(self.headers.get('content-length'))
+        requestBody = json.loads(self.rfile.read(content_len).decode('utf-8'))
+        print(requestBody)
+        body = ''
+        with open(FILE_TO_SERVE) as f:
+            body = f.read()
+        self.send_header("Content-length", str(len(body)))
         self.end_headers()
-        return
+        print(type(body))
+        self.wfile.write(body.encode('utf-8'))
+        self.wfile.close()
 
 
 if __name__ == "__main__":
