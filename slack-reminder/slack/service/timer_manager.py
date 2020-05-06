@@ -6,7 +6,6 @@ from .cleaner import RequestCleaner
 class TimerManager():
     """
     Timerをたくさん作る役割
-    # TODO Djnagoで作ったときにいらないかも？
     """
 
     def __init__(self, form=None):

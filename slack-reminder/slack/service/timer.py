@@ -16,8 +16,8 @@ class Timer(Thread):
 
     def __init__(self, time, job):
         """
-
-        Args:
+        Parameter:
+        ----------------------
             time : datetime
             job : Jobクラスを継承したクラス
         """
@@ -27,13 +27,9 @@ class Timer(Thread):
 
     def run(self):
         """
-        時刻になったらJob実行
+        時刻になったらJobを実行する
 
         """
         while True:
-            now = datetime.datetime.now()
-            print(now)
-            print(self.__time)
             if datetime.datetime.now() >= self.__time:
-                print("------------timer--------")
                 return self.__job.run()

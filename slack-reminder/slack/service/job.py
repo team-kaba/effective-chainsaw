@@ -17,7 +17,7 @@ class SlackMessenger(Job):
     特定のチャンネルにメッセージを送る
     """
 
-    def __init__(self, web_hook_url, sent_message):
+    def __init__(self, web_hook_url, sent_message, channel="#coffee", username="coffee-bot", icon_emoji=":coffee"):
         """
         Parameter
         -------------
@@ -29,7 +29,11 @@ class SlackMessenger(Job):
         """
         self.__url = web_hook_url
         self.__message = sent_message
+        self.__channel = channel
+        self.__username = username
+        self.__icon_emoji = icon_emoji
 
     def run(self):
         slack = Slack(self.__url)
-        slack.notify(text=self.__message)
+        slack.notify(text=self.__message, channel=self.__channel,
+                     username=self.__username, icon_emoji=self.__icon_emoji)
