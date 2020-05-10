@@ -16,6 +16,7 @@ class CreateReminder extends React.Component {
             url: null
         }
     }
+
     updateMessage(value) {
         this.setState({message: value});
     }
