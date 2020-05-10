@@ -49,7 +49,7 @@ class CreateReminder extends React.Component {
                     updateMessage={this.updateMessage.bind(this)} />
                 <TimeInput value={this.state.time}
                     updateTime={this.updateTime.bind(this)} />
-                <UrlInput value={this.state.url} updateUrl={this.state.url}/>
+                <UrlInput value={this.state.url} updateUrl={this.updateUrl.bind(this)}/>
                 <button onClick={this.clickHandler.bind(this)}>送信</button>
             </div>
             
