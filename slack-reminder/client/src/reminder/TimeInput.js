@@ -2,23 +2,14 @@ import React from 'react'
 
 
 class TimeInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            time: this.props.time
-        }
-    }
-
     handleChange(e) {
-        this.setState({ time: e.target.value });
-        this.props.updateTime(this.state.time);
-
+        this.props.updateTime(e.target.value);
     }
 
     render() {
         return (
             <div className="form-group">
-                Time: <br />
+                <label className="control-label">Date : </label><br/>
                 <input type="datetime-local" onChange={this.handleChange.bind(this)} />
             </div>
         )
