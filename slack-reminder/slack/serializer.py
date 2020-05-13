@@ -6,3 +6,7 @@ class SlackNotificationSerializer(serializers.ModelSerializer):
     class Meta:
         model = SlackNotification
         fields = ('id', 'message', 'time', 'url')
+
+
+class SlackNotificationListSerializer(serializers.ListSerializer):
+    child = SlackNotificationSerializer()
