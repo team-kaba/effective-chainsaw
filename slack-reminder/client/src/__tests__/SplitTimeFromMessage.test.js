@@ -1,17 +1,5 @@
 import SplitTimeFromMessage from '../reminder/util/SplitTimeFromMessage';
 
-/*
-test('Time and message split correctly', () => {
-    const target = '11:00 test\n11:01 test';
-    const actualTime = new SplitTimeFromMessage(target);
-    
-    const expectedTime = ['11:00', '11:01'];
-    const expectedMessage = ['test', 'test1'];
-
-    expect(actualTime).toEqual(expectedTime);
-    expect(actualMessage).toEqual(expectedMessage);
-})
-*/
 
 test('Test for SplitTimeFromMessage.splitLineBreaks method ', () => {
     const target = '11:00 test\n11:01 test1';

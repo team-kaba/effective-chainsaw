@@ -6,10 +6,6 @@ export default class SplitTimeFromMessage {
         this.splitTimes = [];
     }
 
-    // TODO 目標 '11:00 test\n11:01 test1'→ [{message:'test', time:'11:00'}, {message:'test1', time:'11:01'}]に分割
-    // TODO 1.改行をなくす '11:00 test\n11:01 test1' → ['11:00 test', '11:01 test1']
-    // TODO 2.時間とメッセージのそれぞれの形式にマッチするものを分割する '11:00 test' → {message:'test', time:'11:00'}
-    // TODO 3.繰り返しを行う
     static splitLineBreaks(targetStr) {
         return targetStr.split(/\n/gi);
     }
@@ -27,9 +23,7 @@ export default class SplitTimeFromMessage {
     }
     
     static splitMultiMessage(targetStr) {
-        //TODOの1を実装
         let targetArray = this.splitLineBreaks(targetStr)
-        //TODO 繰り返しを行う
         let result = targetArray;
         let i = 0;
         for (let target of targetArray) {
