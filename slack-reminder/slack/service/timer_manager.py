@@ -1,6 +1,6 @@
 from .timer import Timer
 from .job import SlackMessenger
-from .cleaner import RequestCleaner
+from .cleaner import DateTimeCleaner
 
 
 class TimerManager():
@@ -13,8 +13,13 @@ class TimerManager():
         self.__form = form
 
     @staticmethod
-    def create_timer(messages, time, url):
-        messages, time, url = RequestCleaner(messages, time, url).clean()
-        for message in messages:
-            job = SlackMessenger(url, message)
-            Timer(time, job).start()
+    def create_timer(requests):
+        """
+        Parameter
+        ----------
+        requests : [{message:'', time: '', url: ''}]
+        """
+        for request in requests:
+            job = SlackMessenger(request['url'], request['message'])
+            creaned_datetime = DateTimeCleaner.clean(request['time'])
+            Timer(creaned_datetime, job).start()
