@@ -1,16 +1,8 @@
 import axios from 'axios';
-import API_BASE_URL from './Const.js';
 
-const client = axios.create({
-    baseURL: API_BASE_URL,
-    headers: {
-        'Content-Type': 'application/json'
-    },
-});
 
-function createTimerPost(params) {
-    console.log(params)
-    return client.post('', params)
+export default function doPost(path, request) {
+    axios.post(path, request
+        ).then(res => { console.log(res); }
+        ).catch(error=>{console.log(error)});
 }
-
-export default createTimerPost;

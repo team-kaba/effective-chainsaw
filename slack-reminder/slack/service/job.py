@@ -35,5 +35,4 @@ class SlackMessenger(Job):
 
     def run(self):
         slack = Slack(self.__url)
-        slack.notify(text=self.__message, channel=self.__channel,
-                     username=self.__username, icon_emoji=self.__icon_emoji)
+        slack.notify(text=self.__message)
