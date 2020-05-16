@@ -7,7 +7,10 @@ export default class SplitTimeFromMessage {
     }
 
     static splitLineBreaks(targetStr) {
-        return targetStr.split(/\n/gi);
+        let result = [];
+        result = targetStr.split(/\n/m).filter(element => element !== '');
+        //空文字を削除したい
+        return result;
     }
 
     static splitTimeAndMessage(targetStr) {
