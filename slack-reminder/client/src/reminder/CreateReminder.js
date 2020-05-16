@@ -1,10 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import API_BASE_URL from '../api/Const';
+import doPost from '../api/Index';
+import createRequest from './util/CreateRequest';
 import '../styles.css';
 import MessageInput from './MessageInput';
-import TimeInput from './TimeInput';
+import DateInput from './DateInput';
 import UrlInput from './UrlInput';
+import isValidateMessage from './util/ValidateCheck';
 
 
 class CreateReminder extends React.Component {
@@ -12,7 +14,7 @@ class CreateReminder extends React.Component {
         super(props)
         this.state = {
             message: null,
-            time: null,
+            date: null,
             url: null
         }
     }
@@ -21,8 +23,8 @@ class CreateReminder extends React.Component {
         this.setState({message: value});
     }
 
-    updateTime(value) {
-        this.setState({ time: value });
+    updateDate(value) {
+        this.setState({ date: value });
     }
 
     updateUrl(value) {
@@ -30,17 +32,12 @@ class CreateReminder extends React.Component {
     }
 
     clickHandler(e) {
-        axios.post(API_BASE_URL, {
-            message: this.state.message,
-            time: this.state.time,
-            url: this.state.url
+        if (isValidateMessage(this.state.message)) {            
+            let requestBody = createRequest(this.state.message, this.state.date, this.state.url);
+            doPost(API_BASE_URL, requestBody);
+        } else {
+            console.log('メッセージの形式が違います')
         }
-        ).then(function (res) {
-            console.log(res);
-        }
-        ).catch(function (error) {
-            console.log(error);
-        });
     }
 
     render() {
@@ -48,8 +45,8 @@ class CreateReminder extends React.Component {
             <div>
                 <MessageInput value={this.state.message}
                     updateMessage={this.updateMessage.bind(this)} />
-                <TimeInput value={this.state.time}
-                    updateTime={this.updateTime.bind(this)} />
+                <DateInput value={this.state.time}
+                    updateDate={this.updateDate.bind(this)} />
                 <UrlInput value={this.state.url} updateUrl={this.updateUrl.bind(this)}/>
                 <button onClick={this.clickHandler.bind(this)}>送信</button>
             </div>

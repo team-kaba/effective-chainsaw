@@ -1,16 +1,16 @@
 import React from 'react'
 
 
-class TimeInput extends React.Component {
+class DateInput extends React.Component {
     handleChange(e) {
-        this.props.updateTime(e.target.value);
+        this.props.updateDate(e.target.value);
     }
 
     render() {
         return (
             <div className="form-group">
                 <label className="control-label">Date : </label><br/>
-                <input type="datetime-local" onChange={this.handleChange.bind(this)} />
+                <input type="date" onChange={this.handleChange.bind(this)} />
             </div>
         )
     }
@@ -18,4 +18,4 @@ class TimeInput extends React.Component {
 
 }
 
-export default TimeInput;
+export default DateInput;
