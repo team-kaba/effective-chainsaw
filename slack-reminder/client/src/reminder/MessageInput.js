@@ -10,7 +10,7 @@ class MessageInput extends React.Component {
     render() {
         return (
             <div className="form-group">
-                <label className="control-label">Message : </label><br/>
+                <label className="control-label">Message : (例「01:01 サンプル」)</label><br/>
                 <textarea className="form-control" rows="3" name="message"
                     onChange={this.handleChange.bind(this)} />
             </div>
