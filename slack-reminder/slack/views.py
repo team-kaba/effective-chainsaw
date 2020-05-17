@@ -1,7 +1,7 @@
 from rest_framework import generics
 from .models import SlackNotification
 from .serializer import SlackNotificationListSerializer
-from .service.timer_manager import TimerManager
+from .service.timer_creater import TimerCreater
 
 
 class SlackNotificationListCreater(generics.ListCreateAPIView):
@@ -10,5 +10,5 @@ class SlackNotificationListCreater(generics.ListCreateAPIView):
 
     def post(self, request, *args, **kwargs):
         print(request.data)
-        TimerManager.create_timer(request.data)
+        TimerCreater.create(request.data)
         return self.create(request, *args, **kwargs)

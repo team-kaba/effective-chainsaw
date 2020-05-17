@@ -3,17 +3,13 @@ from .job import SlackMessenger
 from .cleaner import DateTimeCleaner
 
 
-class TimerManager():
+class TimerCreater():
     """
     Timerをたくさん作る役割
     """
 
-    def __init__(self, form=None):
-        self.__timers = None
-        self.__form = form
-
     @staticmethod
-    def create_timer(requests):
+    def create(requests):
         """
         Parameter
         ----------
