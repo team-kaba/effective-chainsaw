@@ -1,0 +1,12 @@
+version: "3"
+services:
+    backend:
+        image: slack-django:latest
+        container_name: django-app
+        ports: 
+            - "8000:8000"
+    fronend:
+        image: front-webapp:latest
+        container_name: react-app
+        ports:
+            - "3000:3000"

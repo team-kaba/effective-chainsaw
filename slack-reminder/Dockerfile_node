@@ -1,0 +1,5 @@
+FROM node:12 
+ADD client /usr/src/app
+WORKDIR /usr/src/app/client
+RUN npm install
+ENTRYPOINT ["npm run start"]
