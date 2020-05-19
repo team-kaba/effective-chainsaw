@@ -6,5 +6,5 @@ COPY src/ /src/app/src
 COPY public/ /src/app/public
 WORKDIR /src/app/
 RUN npm install
-RUN npm install react-scripts@3.4.0 -g --silent
+RUN npm install react-scripts@3.4.1 -g --silent
 ENTRYPOINT [ "npm", "run", "start" ]
